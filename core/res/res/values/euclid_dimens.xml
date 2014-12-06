@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2025 euclidOS
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+
+    <dimen name="net_traffic_text_size">8sp</dimen>
+</resources>

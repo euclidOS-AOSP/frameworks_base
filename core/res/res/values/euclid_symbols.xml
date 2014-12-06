@@ -105,4 +105,11 @@
     <java-symbol type="string" name="sleep_mode_notification_content" />
     <java-symbol type="string" name="sleep_mode_enabled_toast" />
     <java-symbol type="string" name="sleep_mode_disabled_toast" />
+
+    <!-- Status bar network traffic monitor -->
+    <java-symbol type="dimen" name="net_traffic_text_size" />
+    <java-symbol type="string" name="kilobitspersecond_short" />
+    <java-symbol type="string" name="megabitspersecond_short" />
+    <java-symbol type="string" name="kilobytespersecond_short" />
+    <java-symbol type="string" name="megabytespersecond_short" />	
 </resources>
