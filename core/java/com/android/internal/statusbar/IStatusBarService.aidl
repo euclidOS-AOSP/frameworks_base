@@ -254,4 +254,7 @@ interface IStatusBarService
      * Toggle recent apps.
      */
     void toggleRecentApps();
+
+    /** euclidOS additions. */
+    void toggleCameraFlash();
 }
