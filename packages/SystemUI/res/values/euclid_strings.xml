@@ -73,7 +73,10 @@
     
     <!-- Data disabled icon -->
     <string name="data_disabled_icon_title">Data disabled icon</string>
-
+     
+     <!-- 4G icon -->
+    <string name="show_fourg_icon_title">4G icon</string>
+    
     <!-- 5G toggle in Internet Dialog -->
     <string name="enable_fiveg">Enable 5G</string>
 </resources>
