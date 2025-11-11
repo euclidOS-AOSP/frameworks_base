@@ -58,12 +58,12 @@ public class PropImitationHooks {
     private static final String PACKAGE_FINSKY = "com.android.vending";
     private static final String PACKAGE_GMS = "com.google.android.gms";
     private static final String PROCESS_GMS_UNSTABLE = PACKAGE_GMS + ".unstable";
-    private static final String PACKAGE_NETFLIX = "com.netflix.mediaclient";
 
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
 
     private static final Map<String, Object> propsToChangePixelXL;
+    private static final Map<String, Object> propsToChangePixel3;
     private static final Map<String, Object> propsToChangeROG6;
     private static final Map<String, Object> propsToChangeS24U;
     private static final Map<String, Object> propsToChangeLenovoY700;
@@ -77,6 +77,19 @@ public class PropImitationHooks {
     // Packages to Spoof as Pixel XL
     private static final Set<String> packagesToChangePixelXL = Set.of(
             "com.google.android.apps.photos"
+    );
+
+    // Package to spoof as Pixel 3
+    private static final Set<String> packagesToChangePixel3 = Set.of(
+            // Unlock Pixel 3 exclusive wallpapers for all devices
+            "com.breel.wallpapers20",
+            "com.google.android.apps.wallpaper",
+            "com.google.android.apps.wallpaper.pixel",
+            "com.google.pixel.dynamicwallpapers",
+            "com.google.pixel.livewallpaper",
+            // Unlock HDR-10 support for Netflix on non-Pixel devices
+            // (Device should have Widevine L1 certification & HDR capable display)
+            "com.netflix.mediaclient"
     );
 
     // Packages to Spoof as ROG Phone 6
@@ -162,6 +175,15 @@ public class PropImitationHooks {
         propsToChangePixelXL.put("MODEL", "Pixel XL");
         propsToChangePixelXL.put("ID", "QP1A.191005.007.A3");
         propsToChangePixelXL.put("FINGERPRINT", "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys");
+        propsToChangePixel3 = new HashMap<>();
+        propsToChangePixel3.put("BRAND", "google");
+        propsToChangePixel3.put("MANUFACTURER", "Google");
+        propsToChangePixel3.put("DEVICE", "blueline");
+        propsToChangePixel3.put("PRODUCT", "blueline");
+        propsToChangePixel3.put("HARDWARE", "blueline");
+        propsToChangePixel3.put("MODEL", "Pixel 3");
+        propsToChangePixel3.put("ID", "RQ2A.210305.006");
+        propsToChangePixel3.put("FINGERPRINT", "google/blueline/blueline:11/RQ2A.210305.006/7119741:user/release-keys");
         propsToChangeROG6 = new HashMap<>();
         propsToChangeROG6.put("BRAND", "asus");
         propsToChangeROG6.put("MANUFACTURER", "asus");
@@ -216,7 +238,7 @@ public class PropImitationHooks {
     );
 
     private static volatile List<String> sCertifiedProps = new ArrayList<>();
-    private static volatile String sStockFp, sNetflixModel;
+    private static volatile String sStockFp;
 
     private static volatile String sProcessName;
     private static volatile boolean sIsPixelDevice, sIsGms, sIsFinsky;
@@ -237,7 +259,6 @@ public class PropImitationHooks {
         }
 
         sStockFp = res.getString(R.string.config_stockFingerprint);
-        sNetflixModel = res.getString(R.string.config_netflixSpoofModel);
 
         sProcessName = processName;
         sIsPixelDevice = Build.MANUFACTURER.equals("Google") && Build.MODEL.contains("Pixel");
@@ -246,7 +267,6 @@ public class PropImitationHooks {
 
         /* Set Certified Properties for GMSCore
          * Set Stock Fingerprint for ARCore
-         * Set custom model for Netflix
          */
         if (sIsGms || sIsFinsky) {
             if (!android.os.Process.isIsolated()) {
@@ -257,15 +277,14 @@ public class PropImitationHooks {
         } else if (!sStockFp.isEmpty() && packageName.equals(PACKAGE_ARCORE)) {
             dlog("Setting stock fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sStockFp);
-        } else if (!sNetflixModel.isEmpty() && packageName.equals(PACKAGE_NETFLIX)) {
-            dlog("Setting model to " + sNetflixModel + " for Netflix");
-            setPropValue("MODEL", sNetflixModel);
         }
 
         Map<String, Object> propsToChange = new HashMap<>();
 
         if (packagesToChangePixelXL.contains(packageName)) {
             propsToChange.putAll(propsToChangePixelXL);
+        } else if (packagesToChangePixel3.contains(packageName)) {
+            propsToChange.putAll(propsToChangePixel3);
         } else if (packagesToChangeROG6.contains(packageName)) {
             propsToChange.putAll(propsToChangeROG6);
         } else if (packagesToChangeS24U.contains(packageName)) {
