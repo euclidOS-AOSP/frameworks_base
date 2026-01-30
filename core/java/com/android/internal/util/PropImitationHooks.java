@@ -80,13 +80,15 @@ public class PropImitationHooks {
     private static final String FEATURE_NEXUS_PRELOAD =
             "com.google.android.apps.photos.NEXUS_PRELOAD";
 
-    private static final Map<String, String> sPixelOneProps = Map.of(
-        "PRODUCT", "sailfish",
-        "DEVICE", "sailfish",
+    private static final Map<String, String> sPixelXLProps = Map.of(
+        "PRODUCT", "marlin",
+        "DEVICE", "marlin",
         "MANUFACTURER", "Google",
+        "HARDWARE", "marlin",
+        "BOARD", "marlin",
         "BRAND", "google",
-        "MODEL", "Pixel",
-        "FINGERPRINT", "google/sailfish/sailfish:10/QP1A.191005.007.A3/5972272:user/release-keys"
+        "MODEL", "Pixel XL",
+        "FINGERPRINT", "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys"
     );
 
     private static final Set<String> sPixelFeatures = Set.of(
@@ -157,8 +159,8 @@ public class PropImitationHooks {
             dlog("Setting stock fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sStockFp);
         } else if (sIsPhotos) {
-            dlog("Spoofing Pixel 1 for Google Photos");
-            sPixelOneProps.forEach((PropImitationHooks::setPropValue));
+            dlog("Spoofing Pixel XL for Google Photos");
+            sPixelXLProps.forEach((PropImitationHooks::setPropValue));
         } else if (!sNetflixModel.isEmpty() && packageName.equals(PACKAGE_NETFLIX)) {
             dlog("Setting model to " + sNetflixModel + " for Netflix");
             setPropValue("MODEL", sNetflixModel);
