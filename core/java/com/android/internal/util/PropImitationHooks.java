@@ -77,9 +77,6 @@ public class PropImitationHooks {
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
 
-    private static final String FEATURE_NEXUS_PRELOAD =
-            "com.google.android.apps.photos.NEXUS_PRELOAD";
-
     private static final Map<String, String> sPixelXLProps = Map.of(
         "PRODUCT", "marlin",
         "DEVICE", "marlin",
@@ -88,10 +85,21 @@ public class PropImitationHooks {
         "BOARD", "marlin",
         "BRAND", "google",
         "MODEL", "Pixel XL",
+        "ID", "QP1A.191005.007.A3",
         "FINGERPRINT", "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys"
     );
 
+    private static final Set<String> sNexusFeatures = Set.of(
+            "NEXUS_PRELOAD",
+            "nexus_preload",
+            "GOOGLE_BUILD",
+            "GOOGLE_EXPERIENCE",
+            "PIXEL_EXPERIENCE"
+    );
+
     private static final Set<String> sPixelFeatures = Set.of(
+        "GOOGLE_BUILD",
+        "GOOGLE_EXPERIENCE",
         "PIXEL_2017_EXPERIENCE",
         "PIXEL_2017_PRELOAD",
         "PIXEL_2018_EXPERIENCE",
@@ -160,11 +168,15 @@ public class PropImitationHooks {
             setPropValue("FINGERPRINT", sStockFp);
         } else if (sIsPhotos) {
             dlog("Spoofing Pixel XL for Google Photos");
-            sPixelXLProps.forEach((PropImitationHooks::setPropValue));
+            setProps(sPixelXLProps);
         } else if (!sNetflixModel.isEmpty() && packageName.equals(PACKAGE_NETFLIX)) {
             dlog("Setting model to " + sNetflixModel + " for Netflix");
             setPropValue("MODEL", sNetflixModel);
         }
+    }
+
+    private static void setProps(Map<String, String> props) {
+        props.forEach(PropImitationHooks::setPropValue);
     }
 
     private static void setPropValue(String key, String value) {
@@ -344,7 +356,7 @@ public class PropImitationHooks {
                     || sTensorFeatures.stream().anyMatch(name::contains))) {
                 dlog("Blocked system feature " + name + " for Google Photos");
                 has = false;
-            } else if (!has && name.equalsIgnoreCase(FEATURE_NEXUS_PRELOAD)) {
+            } else if (!has && sNexusFeatures.stream().anyMatch(name::contains)) {
                 dlog("Enabled system feature " + name + " for Google Photos");
                 has = true;
             }
