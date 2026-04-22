@@ -4286,6 +4286,9 @@
     <!-- Specify if the fingerprint hardware support gestures-->
     <bool name="config_fingerprintSupportsGestures">false</bool>
 
+    <!-- Specify for fingerprint to wake and unlock device -->
+    <bool name="config_fingerprintWakeAndUnlock">true</bool>
+
     <!-- The time (in millis) to wait for a power button before sending
          a successful auth in biometric prompt(for side fingerprint) -->
     <integer name="config_sidefpsBpPowerPressWindow">300</integer>

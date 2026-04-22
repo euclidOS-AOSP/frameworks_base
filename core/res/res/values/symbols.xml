@@ -2876,6 +2876,7 @@
   <!-- Fingerprint config -->
   <java-symbol type="integer" name="config_fingerprintMaxTemplatesPerUser"/>
   <java-symbol type="bool" name="config_fingerprintSupportsGestures"/>
+  <java-symbol type="bool" name="config_fingerprintWakeAndUnlock" />
   <java-symbol type="integer" name="config_sidefpsBpPowerPressWindow"/>
   <java-symbol type="integer" name="config_sidefpsKeyguardPowerPressWindow"/>
   <java-symbol type="integer" name="config_sidefpsPostAuthDowntime"/>
