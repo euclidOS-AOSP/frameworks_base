@@ -87,7 +87,7 @@ import static com.android.internal.protolog.WmProtoLogGroups.WM_DEBUG_FOCUS;
 import static com.android.internal.protolog.WmProtoLogGroups.WM_DEBUG_IMMERSIVE;
 import static com.android.internal.protolog.WmProtoLogGroups.WM_DEBUG_LOCKTASK;
 import static com.android.internal.protolog.WmProtoLogGroups.WM_DEBUG_TASKS;
-import com.android.server.applock.AppLockManagerServiceInternal; 
+import com.android.server.app.AppLockManagerServiceInternal; 
 import static com.android.server.am.ActivityManagerService.STOCK_PM_FLAGS;
 import static com.android.server.am.ActivityManagerServiceDumpActivitiesProto.ROOT_WINDOW_CONTAINER;
 import static com.android.server.am.ActivityManagerServiceDumpProcessesProto.CONFIG_WILL_CHANGE;
