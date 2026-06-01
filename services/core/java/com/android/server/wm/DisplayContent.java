@@ -5308,6 +5308,11 @@ class DisplayContent extends RootDisplayArea implements WindowManagerPolicy.Disp
         }
     }
 
+   private boolean hasSecureWindowOnScreen() {
+        final WindowState win = getWindow(w -> w.mHasSurface && w.isSecureLocked());
+        return win != null;
+    }
+
     /**
      * Creates a {@link LayerCaptureArgs} object.
      *
