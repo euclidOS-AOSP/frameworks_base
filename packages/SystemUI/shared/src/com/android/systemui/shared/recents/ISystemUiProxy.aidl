@@ -189,5 +189,15 @@ interface ISystemUiProxy {
      */
     oneway void onKeyEvent(int keycode, int displayId) = 60;
 
-    // Next id = 61
+    /**
+     * Notifies SystemUI of a long press on a key of the specified type.
+     */
+    oneway void onLongPressKeyEvent(int keycode, int displayId) = 61;
+
+    /**
+     * Notifies SystemUI of a sleep event.
+     */
+    oneway void onSleepEvent(in MotionEvent event) = 62;
+
+    // Next id = 63
 }

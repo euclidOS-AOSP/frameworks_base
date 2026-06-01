@@ -376,6 +376,26 @@ public class LauncherProxyService implements CallbackController<LauncherProxyLis
         }
 
         @Override
+            public void onLongPressKeyEvent(int keycode, int displayId) {
+            verifyCallerAndClearCallingIdentityPostMain(
+                    "onLongPressKeyEvent " + KeyEvent.keyCodeToString(keycode) + " displayId=" + displayId,
+                    () -> {
+                        long when = SystemClock.uptimeMillis();
+                        KeyEvent ev = new KeyEvent(when, when, KeyEvent.ACTION_DOWN, keycode, 0, 0,
+                                KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
+                                KeyEvent.FLAG_LONG_PRESS | KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY,
+                                InputDevice.SOURCE_KEYBOARD);
+                        ev.setDisplayId(displayId);
+                        mCommandQueue.handleSystemKey(ev);
+                    });
+        }
+
+        @Override
+        public void onSleepEvent(MotionEvent event) {
+            // No-op for now to unblock build
+        }
+
+        @Override
         public void onImeSwitcherLongPress() {
             // TODO(b/204901476) We're intentionally using the default display for now since
             // Launcher/Taskbar isn't display aware.
