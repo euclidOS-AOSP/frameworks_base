@@ -81,23 +81,10 @@ fun BuildNumber(
     val context = LocalContext.current
     val haptics = LocalHapticFeedback.current
 
-<<<<<<< HEAD
-    BuildNumber(viewModel, modifier, textColor)
-}
-
-@Composable
-fun BuildNumber(
-    viewModel: BuildNumberViewModel,
-    modifier: Modifier,
-    textColor: Color = MaterialTheme.colorScheme.onSurface,
-) {
-    val buildNumber = viewModel.buildNumber
-=======
     var usageText by remember { mutableStateOf<String?>(null) }
     val subMgr = remember { SubscriptionManager.from(context) }
     val duc = remember { DataUsageController(context) }
     val cr = context.contentResolver
->>>>>>> 389b264c5d28 (SystemUI: Show daily data usage in QS footer [SQUASHED])
 
     var showDataUsage by remember {
         mutableStateOf(
