@@ -17,6 +17,7 @@
 package com.android.internal.util.euclid;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.ActivityThread;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -42,6 +43,7 @@ import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.UserHandle;
 import android.hardware.input.InputManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.net.ConnectivityManager;
