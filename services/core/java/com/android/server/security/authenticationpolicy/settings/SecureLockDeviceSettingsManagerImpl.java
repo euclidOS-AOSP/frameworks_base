@@ -90,7 +90,6 @@ public class SecureLockDeviceSettingsManagerImpl implements SecureLockDeviceSett
                     Settings.Secure.CAMERA_GESTURE_DISABLED, 1,
                     Settings.Secure.CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED, 1,
                     Settings.Secure.CAMERA_LIFT_TRIGGER_ENABLED, 0,
-                    Settings.Secure.LOCKSCREEN_WEATHER_ENABLED, 0,
                     Settings.Secure.LOCKSCREEN_SHOW_CONTROLS, 0,
                     Settings.Secure.LOCKSCREEN_SHOW_WALLET, 0,
                     Settings.Secure.LOCK_SCREEN_SHOW_QR_CODE_SCANNER, 0,
@@ -99,7 +98,8 @@ public class SecureLockDeviceSettingsManagerImpl implements SecureLockDeviceSett
     private static final Map<String, Integer> SYSTEM_SETTINGS_SECURE_LOCK_DEVICE_VALUES =
             Map.of(
                     Settings.System.BLUETOOTH_DISCOVERABILITY, 0,
-                    Settings.System.LOCK_TO_APP_ENABLED, 0);
+                    Settings.System.LOCK_TO_APP_ENABLED, 0,
+                    Settings.System.LOCKSCREEN_WEATHER_ENABLED, 0);
 
     private static final Set<String> GLOBAL_SETTINGS =
             Set.of(
