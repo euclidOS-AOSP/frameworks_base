@@ -168,6 +168,15 @@ public class OmniJawsClient {
                         mCachedInfo.condition = weatherCursor.getString(6);
                         mCachedInfo.timeStamp = Long.parseLong(weatherCursor.getString(11));
                         mCachedInfo.pinWheel = weatherCursor.getString(13);
+                        if (weatherCursor.getColumnCount() > 14) {
+                        mCachedInfo.feelsLike = weatherCursor.getFloat(14);
+                        mCachedInfo.pressure = weatherCursor.getFloat(15);
+                        mCachedInfo.uvi = weatherCursor.getFloat(16);
+                        mCachedInfo.visibility = weatherCursor.getFloat(17);
+                        mCachedInfo.dewPoint = weatherCursor.getFloat(18);
+                        mCachedInfo.sunrise = weatherCursor.getLong(19);
+                        mCachedInfo.sunset = weatherCursor.getLong(20);
+                        }
                     } else {
                         DayForecast day = new DayForecast();
                         day.low = getFormattedValue(weatherCursor.getFloat(7));
@@ -182,6 +191,26 @@ public class OmniJawsClient {
             }
         } catch (Exception e) {
             Log.e(TAG, "queryWeather: weather", e);
+        }
+        
+               try (Cursor hourlyCursor = context.getContentResolver().query(
+                HOURLY_URI, HOURLY_PROJECTION, null, null, null)) {
+            if (hourlyCursor != null && hourlyCursor.getCount() > 0 && mCachedInfo != null) {
+                List<HourlyForecast> hourlyForecasts = new ArrayList<>();
+                while (hourlyCursor.moveToNext()) {
+                    HourlyForecast hourly = new HourlyForecast();
+                    hourly.temperature = hourlyCursor.getFloat(0);
+                    hourly.conditionCode = hourlyCursor.getInt(1);
+                    hourly.condition = hourlyCursor.getString(2);
+                    hourly.timestamp = hourlyCursor.getLong(3);
+                    hourly.humidity = hourlyCursor.getFloat(4);
+                    hourly.windSpeed = hourlyCursor.getFloat(5);
+                    hourlyForecasts.add(hourly);
+                }
+                mCachedInfo.hourlyForecasts = hourlyForecasts;
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "queryWeather: hourly", e);
         }
 
         try (Cursor settingsCursor = context.getContentResolver().query(
@@ -389,6 +418,14 @@ public class OmniJawsClient {
         public String provider;
         public String pinWheel;
         public String iconPack;
+        public float feelsLike = Float.NaN;
+        public float pressure = Float.NaN;
+        public float uvi = Float.NaN;
+        public float visibility = Float.NaN;
+        public float dewPoint = Float.NaN;
+        public long sunrise = 0;
+        public long sunset = 0;
+        public List<HourlyForecast> hourlyForecasts;
 
         public String getLastUpdateTime() {
             return new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date(timeStamp));
