@@ -62,7 +62,15 @@ public class OmniJawsClient {
     public static final String[] WEATHER_PROJECTION = {
             "city", "wind_speed", "wind_direction", "condition_code", "temperature",
             "humidity", "condition", "forecast_low", "forecast_high", "forecast_condition",
-            "forecast_condition_code", "time_stamp", "forecast_date", "pin_wheel"
+            "forecast_condition_code", "time_stamp", "forecast_date", "pin_wheel",
+            "feels_like", "pressure", "uvi", "visibility", "dew_point", "sunrise", "sunset"
+    };
+
+    public static final Uri HOURLY_URI = Uri.parse("content://org.omnirom.omnijaws.provider/hourly");
+    public static final String[] HOURLY_PROJECTION = {
+            "hourly_temperature", "hourly_condition_code", "hourly_condition",
+            "hourly_timestamp", "hourly_humidity", "hourly_wind_speed"
+     };
     };
 
     public static final String[] SETTINGS_PROJECTION = {
