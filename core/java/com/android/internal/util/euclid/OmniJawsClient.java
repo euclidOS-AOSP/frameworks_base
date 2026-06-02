@@ -192,7 +192,26 @@ public class OmniJawsClient {
         } catch (Exception e) {
             Log.e(TAG, "queryWeather: weather", e);
         }
-        
+                try (Cursor hourlyCursor = context.getContentResolver().query(
+                HOURLY_URI, HOURLY_PROJECTION, null, null, null)) {
+            if (hourlyCursor != null && hourlyCursor.getCount() > 0 && mCachedInfo != null) {
+                List<HourlyForecast> hourlyForecasts = new ArrayList<>();
+                while (hourlyCursor.moveToNext()) {
+                    HourlyForecast hourly = new HourlyForecast();
+                    hourly.temperature = hourlyCursor.getFloat(0);
+                    hourly.conditionCode = hourlyCursor.getInt(1);
+                    hourly.condition = hourlyCursor.getString(2);
+                    hourly.timestamp = hourlyCursor.getLong(3);
+                    hourly.humidity = hourlyCursor.getFloat(4);
+                    hourly.windSpeed = hourlyCursor.getFloat(5);
+                    hourlyForecasts.add(hourly);
+                }
+                mCachedInfo.hourlyForecasts = hourlyForecasts;
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "queryWeather: hourly", e);
+        }
+
                try (Cursor hourlyCursor = context.getContentResolver().query(
                 HOURLY_URI, HOURLY_PROJECTION, null, null, null)) {
             if (hourlyCursor != null && hourlyCursor.getCount() > 0 && mCachedInfo != null) {
