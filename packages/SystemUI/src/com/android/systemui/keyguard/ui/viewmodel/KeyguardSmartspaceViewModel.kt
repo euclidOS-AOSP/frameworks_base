@@ -46,8 +46,8 @@ constructor(
     val isSmartspaceEnabled: Boolean
         get() = smartspaceController.isEnabled
 
-    /** Whether the weather area is available and enabled. */
-    private val isWeatherEnabled: StateFlow<Boolean>
+   /** Whether the weather area should be enabled. */
+   val isWeatherEnabled: StateFlow<Boolean>
         get() = smartspaceInteractor.isWeatherEnabled
 
     /** Whether the data and weather areas are decoupled in the build. */
