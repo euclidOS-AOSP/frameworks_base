@@ -166,6 +166,10 @@ public class EuclidUtils {
         return isPackageInstalled(context, pkg, true);
     }
     
+    public static boolean isPackageEnabled(Context context, String pkg) {
+        return isPackageInstalled(context, pkg, false);
+    }
+
     public static List<String> launchablePackages(Context context) {
         List<String> list = new ArrayList<>();
 
