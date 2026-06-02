@@ -469,7 +469,7 @@ private fun ContentScope.QuickSettingsLayout(
             if (buildNumberViewModel.buildNumber != null) {
                 VerticalSeparator(QuickSettingsShade.Dimensions.ShortPadding)
                 BuildNumber(
-                    viewModel = buildNumberViewModel,
+                    viewModelFactory = buildNumberViewModel,
                     modifier =
                         Modifier.align(Alignment.Start)
                             .padding(start = QuickSettingsShade.Dimensions.Padding),
