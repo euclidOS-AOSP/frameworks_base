@@ -5930,6 +5930,11 @@ public final class Settings {
          */
         @Readable(maxTargetSdk = Build.VERSION_CODES.R)
         public static final String MEDIA_BUTTON_RECEIVER = "media_button_receiver";
+        
+        /**
+         * @hide
+         */
+        public static final String RECENTS_LOCKED_TASKS = "recents_locked_tasks";
 
         /**
          * Setting to enable Auto Replace (AutoText) in text editors. 1 = On, 0 = Off
