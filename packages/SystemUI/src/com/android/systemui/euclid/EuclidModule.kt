@@ -256,7 +256,7 @@ interface EuclidModule {
                 tileSpec = TileSpec.create(SleepModeTile.TILE_SPEC),
                 uiConfig =
                     QSTileUIConfig.Resource(
-                        iconRes = R.drawable.ic_sleep,
+                        iconRes = com.android.internal.R.drawable.ic_sleep,
                         labelRes = R.string.quick_settings_sleep_mode_label
                     ),
                 instanceId = uiEventLogger.getNewInstanceId(),
