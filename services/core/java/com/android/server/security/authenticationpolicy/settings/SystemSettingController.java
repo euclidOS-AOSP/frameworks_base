@@ -50,7 +50,8 @@ class SystemSettingController implements SettingController<Integer> {
     Map<String, Integer> initializeDefaultValues() {
         return Map.of(
                 Settings.System.BLUETOOTH_DISCOVERABILITY, 1,
-                Settings.System.LOCK_TO_APP_ENABLED, 0
+                Settings.System.LOCK_TO_APP_ENABLED, 0,
+                Settings.System.LOCKSCREEN_WEATHER_ENABLED, 1
         );
     }
 

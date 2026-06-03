@@ -48,7 +48,6 @@ public class SecureSettingControllerTest {
                     Settings.Secure.CAMERA_GESTURE_DISABLED, 1,
                     Settings.Secure.CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED, 1,
                     Settings.Secure.CAMERA_LIFT_TRIGGER_ENABLED, 0,
-                    Settings.Secure.LOCKSCREEN_WEATHER_ENABLED, 0,
                     Settings.Secure.LOCKSCREEN_SHOW_CONTROLS, 0,
                     Settings.Secure.LOCKSCREEN_SHOW_WALLET, 0,
                     Settings.Secure.LOCK_SCREEN_SHOW_QR_CODE_SCANNER, 0,
