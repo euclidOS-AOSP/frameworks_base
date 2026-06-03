@@ -71,7 +71,6 @@ public class OmniJawsClient {
             "hourly_temperature", "hourly_condition_code", "hourly_condition",
             "hourly_timestamp", "hourly_humidity", "hourly_wind_speed"
      };
-    };
 
     public static final String[] SETTINGS_PROJECTION = {
             "enabled", "units", "provider", "setup", "icon_pack"
