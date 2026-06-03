@@ -40,7 +40,10 @@ public class SystemSettingControllerTest {
     @Rule public MockitoRule mockito = MockitoJUnit.rule();
 
     private static final Map<String, Integer> SYSTEM_SETTINGS_SECURE_LOCK_DEVICE_VALUES =
-            Map.of(Settings.System.BLUETOOTH_DISCOVERABILITY, 0);
+            Map.of(
+                    Settings.System.BLUETOOTH_DISCOVERABILITY, 0,
+                    Settings.System.LOCK_TO_APP_ENABLED, 0,
+                    Settings.System.LOCKSCREEN_WEATHER_ENABLED, 0);
     private final Map<String, Integer> mSystemSettingsOriginalOrDefaultValues =
             new HashMap<>();
     private Map<String, Integer> mSystemSettingsDefaultValues;
