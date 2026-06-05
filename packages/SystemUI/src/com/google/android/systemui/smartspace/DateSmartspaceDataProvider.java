@@ -53,17 +53,17 @@ public final class DateSmartspaceDataProvider
     }
 
     @Override
-    public SmartspaceView getView(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.date_plus_extras, parent, false);
+    public SmartspaceView getView(Context context) {
+        View view = LayoutInflater.from(context)
+              .inflate(R.layout.date_plus_extras, null);
         view.addOnAttachStateChangeListener(mStateChangeListener);
         return (SmartspaceView) view;
     }
 
     @Override
-    public SmartspaceView getLargeClockView(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.date_plus_extras_large, parent, false);
+    public SmartspaceView getLargeClockView(Context context) {
+      View view = LayoutInflater.from(context)
+               .inflate(R.layout.date_plus_extras_large, null);
         view.setId(R.id.date_smartspace_view_large);
         view.addOnAttachStateChangeListener(mStateChangeListener);
         return (SmartspaceView) view;
