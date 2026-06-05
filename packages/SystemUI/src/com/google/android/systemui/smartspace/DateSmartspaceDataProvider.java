@@ -1,8 +1,8 @@
 package com.google.android.systemui.smartspace;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.android.systemui.res.R;
