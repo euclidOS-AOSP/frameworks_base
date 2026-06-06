@@ -467,4 +467,18 @@ public class OmniJawsClient {
             return "[" + date + " - " + low + "/" + high + " - " + condition + "]";
         }
     }
+
+    public static class HourlyForecast {
+        public float temperature;
+        public int conditionCode;
+        public String condition;
+        public long timestamp;
+        public float humidity;
+        public float windSpeed;
+
+        @Override
+        public String toString() {
+            return "[" + timestamp + " - " + temperature + " - " + condition + "]";
+        }
+    }
 }
